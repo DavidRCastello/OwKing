@@ -55,7 +55,7 @@ public class UserTable extends Table{
 //				+ "CREATED_DATE DATE NOT NULL, " + "PRIMARY KEY (USER_ID) "
 //				+ ")";
 //		
-		sql = "CREATE TABLE `user` (\n"
+		sql = "CREATE TABLE  `user` (\n"
                     + "`"+this.id+"` VARCHAR(20) NOT NULL,\n"
                     + "`"+this.totalPoints+"` INTEGER(20) NOT NULL,\n"
                     + "`"+this.name+"` VARCHAR(20) NOT NULL,\n"
@@ -74,7 +74,8 @@ public class UserTable extends Table{
                     + "`"+this.lastConnectionDate+"` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
                     + "`"+this.isActive+"` BOOLEAN NOT NULL DEFAULT '1',\n"
                     + "PRIMARY KEY (`"+this.id+"`),\n"
-                    + "FOREIGN KEY (`"+this.gradeId+"`) REFERENCES grade(`id`)\n"
+                    + "FOREIGN KEY (`"+this.gradeId+"`) REFERENCES grade(`id`),\n"
+                    + "FOREIGN KEY (`"+this.rightsId+"`) REFERENCES rights(`id`)\n"
                     + ") ENGINE=InnoDB;";
 		return sql;
 	}

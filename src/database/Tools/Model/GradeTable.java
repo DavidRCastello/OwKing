@@ -25,6 +25,7 @@ public class GradeTable extends Table{
         this.logo = "logo";
         this.minRange = "minRange";
         this.maxRange = "maxRange";
+        this.table = "grade";
     }
     
     @Override    

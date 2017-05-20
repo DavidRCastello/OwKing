@@ -24,7 +24,7 @@ public class CreateDB {
 	
 	public void createConnection() throws SQLException {
 		
-                Table[] table = new Table[]{new GradeTable(),new UserTable()};
+                Table[] table = new Table[]{new GradeTable(), new RightsTable(), new PointsValueTable(), new UserTable(), new CommentsTable()};
 		
                 
                 
