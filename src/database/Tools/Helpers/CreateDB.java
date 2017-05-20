@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import database.Tools.Model.UserTable;
+import database.Tools.Model.*;
 
 public class CreateDB {
 	
@@ -23,8 +23,11 @@ public class CreateDB {
 	}
 	
 	public void createConnection() throws SQLException {
-		UserTable userTable = new UserTable();
-		String sql = userTable.generateSQLString();
+		
+                Table[] table = new Table[]{new GradeTable(),new UserTable()};
+		
+                
+                
 		try {
 			//Class.forName("com.mysql.jdbc.Driver");
 			
@@ -46,13 +49,18 @@ public class CreateDB {
 			 System.out.println("I have connected to the DB");
 			//dbConnection = getDBConnection();
 			
-			 
-			preparedStatement = dbConnection.prepareStatement(sql);
+			for (int i=0; i<table.length;i++){
+                            String sql = table[i].generateSQLString();
+                            preparedStatement = dbConnection.prepareStatement(sql);
+                            preparedStatement.executeUpdate();
+                            
+                        } 
+                        
 
-			System.out.println(sql);
+			//System.out.println(sql);
 
 			// execute create SQL stetement
-			preparedStatement.executeUpdate();
+			
 //
 			System.out.println("Table \"dbuser\" is created!");
 

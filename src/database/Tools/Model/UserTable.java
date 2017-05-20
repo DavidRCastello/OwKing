@@ -73,8 +73,8 @@ public class UserTable extends Table{
                     + "`"+this.registerDate+"` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
                     + "`"+this.lastConnectionDate+"` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
                     + "`"+this.isActive+"` BOOLEAN NOT NULL DEFAULT '1',\n"
-                    + "PRIMARY KEY (`"+this.id+"`)\n"
-                    //+ "FOREIGN KEY (`"+this.gradeId+"`) REFERENCES grade(`id`)\n"
+                    + "PRIMARY KEY (`"+this.id+"`),\n"
+                    + "FOREIGN KEY (`"+this.gradeId+"`) REFERENCES grade(`id`)\n"
                     + ") ENGINE=InnoDB;";
 		return sql;
 	}
