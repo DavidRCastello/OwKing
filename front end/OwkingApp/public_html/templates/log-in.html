@@ -1,0 +1,9 @@
+<h1 class="text-center login-title">Login </h1>
+<form  name="loginForm"  class="form-signin" ng-submit="loginForm.$valid && indexCtrl.login()" novalidate>
+	<div>
+		<input type="text" ng-model='indexCtrl.user.name' id='name' value='jordi'  class="form-control" placeholder="Name" required/>	
+		<input type="password" ng-model='indexCtrl.user.password' id='password' value='pepe' class="form-control" placeholder="Password" required/>
+		<button class="btn btn-lg btn-primary btn-block" id="loginButtonId" type="submit">Log In</button>
+	</div>
+</form>
+<span id='wrongLogin'></span>
