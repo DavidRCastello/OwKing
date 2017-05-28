@@ -48,26 +48,28 @@
                 name: userToPass.getName(),
                 password: userToPass.getPassword(),
                 email: userToPass.getEmail(),
-                batlleTag: userToPass.getBattleTag()
+                battleTag: userToPass.getBattleTag()
             });
         
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;',
-                    
+                    'dataType': 'text'
                 }
             }
 
             $http.post('http://localhost:8084/owKingWebService_1/restful/users/login', data, config)
+            
             .then(function (data, status, headers, config) {
-                $scope.PostDataResponse = data;
+                outPutData = data;
             })
             .then(function (data, status, header, config) {
                 $scope.ResponseDetails = "Data: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
-            });
+            })
+            ;
 
                 if(outPutData[0])	
                 {
@@ -134,6 +136,10 @@
                     controllerAs: 'aboutPage'
     };
     });
+    
+    indexApp.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
     
 })();
 
