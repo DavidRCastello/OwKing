@@ -41,7 +41,7 @@ public class GenericResource {
     @Produces("application/xml")
     public String getXml() {
         //TODO return proper representation object
-        return "hola";
+        return "<hol>hola<hol>";
     }
 
     /**

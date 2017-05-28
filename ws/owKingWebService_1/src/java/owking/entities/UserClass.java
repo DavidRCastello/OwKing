@@ -198,14 +198,5 @@ public class UserClass {
         return "UserClass{" + "id=" + id + ", totalPoints=" + totalPoints + ", name=" + name + ", battleName=" + battleName + ", battleTag=" + battleTag + ", logo=" + logo + ", finalStatisticsId=" + finalStatisticsId + ", gradeId=" + gradeId + ", email=" + email + ", password=" + password + ", twitter=" + twitter + ", twitch=" + twitch + ", rightsId=" + rightsId + ", description=" + description + ", registerDate=" + registerDate + ", lastConnectionDate=" + lastConnectionDate + ", isActive=" + isActive + '}';
     }
 
-    
-    
-  
-
-  
-    
-    
-    
-    
 }
 

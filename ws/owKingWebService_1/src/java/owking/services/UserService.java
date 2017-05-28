@@ -18,15 +18,12 @@ public class UserService {
 
     /**
      * This method is used to call the method login of UserADO
-     * @param name
-     * @param password
-     * @param battleTag
-     * @param email
+     * @param userReceived
      * @return UserClass, in case of error null
      */
-    public UserClass login(){
+    public UserClass login(String userName,String password,String email,String battleTag){
         UserADO uADO = new UserADO();
-        return uADO.getUserExist();
+        return uADO.getUserExist(userName,password,email,battleTag);
     }
     
         public UserClass allusers(){

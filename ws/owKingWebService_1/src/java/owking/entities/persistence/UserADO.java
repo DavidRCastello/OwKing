@@ -1,10 +1,11 @@
 package owking.entities.persistence;
 
+
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import owking.entities.UserClass;
 import owking.entities.ConnectionDB;
@@ -12,7 +13,7 @@ import owking.entities.ConnectionDB;
 
 public class UserADO {
 
-    private final String QUERY_FIND_USER = "SELECT * FROM `user` WHERE (`name` = 'ds' OR `email`= 'a' OR `battleTag`= 'b' ) AND `password` = 'fgd' ";
+    private final String QUERY_FIND_USER = "SELECT * FROM `user` where `name`=? ";
     private final String QUERY_FIND_ALL_USER = "SELECT * FROM `user`";
   
     //name, email, bt, pass
@@ -20,14 +21,21 @@ public class UserADO {
 
     /**
      * This method is used to check if a user with this username and password exists
-     * @param name
+     * @param userName
      * @param password
      * @param battleTag
      * @param email
      * @return UserClass, in case of error null
      */
-    public UserClass getUserExist()
+    public UserClass getUserExist(String userName,String password,String email,String battleTag)
     {
+        
+        if(userName == null) userName = " ";
+        if(email == null) email = " ";
+        if(battleTag == null) battleTag = " ";
+        
+        String sql = "SELECT * FROM `user` where (`name`='"+userName+"' OR `battleTag`='"+battleTag+"' OR `email`='"+email+"' ) AND `password`='"+password+"';";
+        //
         int result = -1;
         UserClass checkuser=null;
 
@@ -41,8 +49,14 @@ public class UserADO {
             }
             if (conn != null)
             {
-                PreparedStatement st = conn.prepareStatement(QUERY_FIND_USER);
+                System.out.println(sql);
+                PreparedStatement st = conn.prepareStatement(sql);
+                //st.setString(1,userName);
+                /*st.setString(2,password);
+                st.setString(3,"");
+                st.setString(4,"");*/
                 ResultSet rs = st.executeQuery();
+                
 
                 while(rs.next())
                 {
@@ -50,7 +64,7 @@ public class UserADO {
                 }
             }
 
-        }catch(Exception e) {
+        }catch(ClassNotFoundException | SQLException e) {
             checkuser = null;
         }
 
