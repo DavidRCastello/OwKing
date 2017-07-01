@@ -51,10 +51,7 @@ public class UserADO {
             {
                 System.out.println(sql);
                 PreparedStatement st = conn.prepareStatement(sql);
-                //st.setString(1,userName);
-                /*st.setString(2,password);
-                st.setString(3,"");
-                st.setString(4,"");*/
+       
                 ResultSet rs = st.executeQuery();
                 
 
@@ -106,6 +103,61 @@ public class UserADO {
     }
     
     
+
+
+    public Boolean register(String userName,String battleName,String battleTag,String logo,String email,String password,String twitter,String twitch,String description)
+    {
+        Boolean flag = false ;
+        
+        String sql = "INSERT INTO `user`(`id`, `totalPoints`, `name`, `battleName`, `battleTag`, `logo`, `finalStatisticsId`, `gradeId`, `email`, `password`,"
+                + " `twitter`, `twitch`, `rightsId`, `description`, `registerDate`, `lastConnectionDate`, `isActive`) VALUES ([value-1],[value-2],"
+                + ""+userName+","+battleName+","+battleTag+","+logo+",[value-7],[value-8],"+email+","+password+","+twitter+","+twitch+",[value-13],"+description+","
+                + "[value-15],[value-16],[value-17])";
+        //
+        int result = -1;
+        UserClass checkuser=null;
+
+        try{
+            ConnectionDB db = new ConnectionDB();
+            Connection conn = null;
+            try {
+                conn = db.getConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (conn != null)
+            {
+                System.out.println(sql);
+                PreparedStatement st = conn.prepareStatement(sql);
+       
+                int updateCount = st.executeUpdate();
+                
+                
+                
+                if(updateCount>0)
+                {
+                    flag=true;
+                }
+
+              
+            }
+
+        }catch(ClassNotFoundException | SQLException e) {
+            System.out.println("SQL error:  "+  e.getMessage());
+            flag=false;
+        }
+
+
+        return flag;
+    }
+    
+    private static java.sql.Timestamp getCurrentTimeStamp() {
+
+    java.util.Date today = new java.util.Date();
+    return new java.sql.Timestamp(today.getTime());
+    }
+    
+    
     private UserClass resultsetToUser(ResultSet rs) throws SQLException {
         UserClass u = null;
         
@@ -131,5 +183,4 @@ public class UserADO {
 
         return u;
     }
-
 }

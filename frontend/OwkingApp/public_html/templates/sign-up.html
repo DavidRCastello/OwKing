@@ -1,0 +1,24 @@
+
+  <form id="registerForm" name="registerForm" ng-submit="registerForm.$valid && indexCtrl.register()" novalidate>
+    <h3>Sing Up</h3>
+    <h4>Sing Up required info</h4>
+    <fieldset>
+      <input placeholder="Name" ng-model="indexCtrl.user.name" id="usernameRegister" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Email" type="mail" tabindex="2" ng-model='indexCtrl.user.email' id="emailRegister" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="BattleName#BattleTag" type="text" id="battleTagRegister" ng-model='indexCtrl.user.battleTag' tabindex="3" >
+    </fieldset>
+    <fieldset>
+      <input placeholder="Password" type="password" tabindex="3" id="passwordRegister" ng-model='indexCtrl.user.password' required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Confirm password" type="password" tabindex="3" ng-model='indexCtrl.password2' id="password2Register" required>
+    </fieldset>
+      
+    <fieldset>
+      <button name="submitRegister" id="submitRegister" type="submit" id="submitRegister" >Submit</button>
+    </fieldset>
+  </form>

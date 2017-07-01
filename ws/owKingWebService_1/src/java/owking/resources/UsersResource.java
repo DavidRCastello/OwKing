@@ -54,7 +54,30 @@ public class UsersResource {
         UserClass user = serviceUser.login(userName,password,email,battleTag);
         return Response.ok(user).build();            
     }
-
+/*private String name;	
+    private String battleName;
+    private String battleTag;
+    private String logo;
+    private String email;
+    private String password;
+    private String twitter;
+    private String twitch;
+    private String description;
+*/
+    @POST
+    @Path("register")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response register(@FormParam("name")String userName,@FormParam("battleName")String battleName, 
+            @FormParam("battleTag")String battleTag,@FormParam("logo")String logo,@FormParam("email")String email, 
+            @FormParam("password")String password,@FormParam("twitter")String twitter,@FormParam("twitch")String twitch,
+            @FormParam("description")String description ){
+        Map<String, Object> mapping = new HashMap<>();
+        
+        serviceUser = new UserService();
+        Boolean flag = serviceUser.register( userName, battleName, battleTag, logo, email, password, twitter, twitch, description);
+        return Response.ok(flag).build();            
+    }
     
     //http://localhost:8084/owKingWebService_1/restful/users/allusers
     @Path("allusers") 
