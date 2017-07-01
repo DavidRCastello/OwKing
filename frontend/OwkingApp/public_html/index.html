@@ -44,10 +44,18 @@
 		</div>
 		
 		<header id="login" class='ng-show'>
-			<log-in></log-in>
+			<sign-up></sign-up>
 		</header>
+                
+                <div id="register" class='ng-hide'>
+                    <log-in></log-in>
+		</<div>
+                
+                <<div id="showRegister" class='ng-show'>
+                    <button ng-click="indexCtrl.showRegister()">Register</button>
+		</<div>
 		
-		<footer class='ng-show'>
+		<footer  id="about" class='ng-show'>
 			<about-page></about-page>
 		</footer>
 	</body>

@@ -5,8 +5,16 @@
 
         this.user= new userObj();
         this.newUser = [];
+        this.password2 = "";
 
             $("#wrongLogin").hide();
+            
+        this.showRegister=function()
+        {
+            $("#about").hide();
+            $("#login").hide();
+            $("#register").show();
+        }
 
             this.login =function ()
             {
@@ -17,32 +25,6 @@
                 else if(this.user.getName().match("@")) userToPass.setEmail(this.user.getName());
                 else userToPass.setName(this.user.getName());
                 userToPass.setPassword(this.user.getPassword());
-
-             /**   $http({
-                    method: "GET",
-                    //data:'name='+userToPass.getName()+'&email='+userToPass.getEmail()+'&password='+userToPass.getPassword()+'&battleTag='+userToPass.getBattleTag(),
-                    url:'http://localhost:8084/owKingWebService_1/restful/generic'            
-                }).then(function (response) {
-                        alert(response);
-                        console.log(response, 'res');
-                        outPutData = response;
-                },function (error){
-                    alert("Error"+userToPass.getName()+" ---------- "+userToPass.getPassword() );
-                    console.log(error, " can't get data.");
-                });**/
-          /*      
-            $http.get('http://localhost:8084/owKingWebService_1/restful/generic')
-            .success(function (data, status, headers, config) {
-                $scope.Details = data;
-            })
-            .error(function (data, status, header, config) {
-                $scope.ResponseDetails = "Data: " + data +
-                    "<br />status: " + status +
-                    "<br />headers: " + jsonFilter(header) +
-                    "<br />config: " + jsonFilter(config);
-            });
-            */
-           
 
              var data = $.param({
                 name: userToPass.getName(),
@@ -93,6 +75,8 @@
                                                 $("#login").hide();
                                                 $("#wrongLogin").html("");
                                                 $("#wrongLogin").hide();
+                                                this.user.name = "";
+                                                this.user.password = "";
                                         }
                                         else 
                                         {
@@ -111,6 +95,50 @@
 
     });
 	
+        
+    function register(){
+       
+       if(this.user.password === this.password2)
+       {
+            var flag = false;
+            var arrayBattle = user.battleTag.split("#");
+             var data = $.param({
+                name: this.user.getName(),
+                battleName: arrayBattle[0],
+                battleTag: arrayBattle[1],
+                email: this.user.getEmail(),
+                password: this.user.getPassword(),
+
+
+            });
+
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;',
+                    'dataType': 'text'
+                }
+            }
+
+            $http.post('http://localhost:8084/owKingWebService_1/restful/users/register', data, config)
+            .then(function (data, status, headers, config) {
+                flag = data[0];
+            })
+            .then(function (data, status, header, config) {
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            })
+            ;
+        }
+        
+        
+    }
+        
+
+        
+        
+        
     /**
     DIRECTIVES SECTION
     To charge templates
@@ -123,6 +151,17 @@
 
                     },
                     controllerAs: 'logIn'
+    };
+    });
+    
+    indexApp.directive("signUp", function (){
+    return {
+                    restrict: 'E',
+                    templateUrl:"templates/sign-up.html",
+                    controller:function(){
+
+                    },
+                    controllerAs: 'signUp'
     };
     });
 
